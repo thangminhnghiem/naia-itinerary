@@ -197,6 +197,7 @@ input:focus,textarea:focus{border-color:var(--focus)}
   </section>
 </div>
 
+<script>window.ampm=s=>String(s==null?"":s).replace(/(\d)\s*([AaPp])\.?\s*[Mm]\.?(?![A-Za-z])/g,(m,d,x)=>d+x.toLowerCase()+"m");window.ampmPoster=el=>{if(!el)return;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const v=ampm(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
@@ -214,44 +215,44 @@ const FOOTER='Refresh . Recovery . Rebalance';
 /* ---------- Retreat data ---------- */
 const NOTES_RETREAT=[
   {head:'Your itinerary',text:'This is the suggested itinerary for your stay. Please let us know if any adjustments are needed to align with your personal preferences.'},
-  {head:'Check-in & check-out',text:'Room check-in is at 2 PM and check-out at noon. If you wish to arrive early or extend your stay, please contact us to make arrangements.'},
+  {head:'Check-in & check-out',text:'Room check-in is at 2pm and check-out at noon. If you wish to arrive early or extend your stay, please contact us to make arrangements.'},
   {head:'Meals',text:'All daily meals are included in the retreat. Please inform us at least 6 hours in advance if you prefer to dine out. We can recommend local restaurants. Additional meals not in our program carry an extra charge, with a 10% discount on the menu price.'},
   {head:'Weather',text:'Expect rainy days and cool weather (20–25°C). Make sure you pack your yoga attire, plus light jackets and comfortable clothing.'}
 ];
-const DAY2=[R('8:30 AM','Yoga class'),R('9:30 AM','Breakfast'),R('12:00 PM','Yoga class or Sound Healing'),R('1:00 PM','Lunch'),R('2:30 PM','90-min body massage'),R('4:30 PM','Yoga class'),R('6:00 PM','Dinner')];
-const DAY3=[R('8:30 AM','Breakfast'),R('10:30 AM','Yoga class'),R('12:00 PM','Yoga class or Sound Healing'),R('1:00 PM','Lunch'),R('2:30 PM','90-min body massage'),R('4:30 PM','Yoga class'),R('6:00 PM','Dinner')];
-const DAY4=[R('8:30 AM','Yoga class'),R('9:30 AM','Breakfast'),R('10:30 AM','Yoga class'),R('11:30 AM','Lunch')];
+const DAY2=[R('8:30am','Yoga class'),R('9:30am','Breakfast'),R('12:00pm','Yoga class or Sound Healing'),R('1:00pm','Lunch'),R('2:30pm','90-min body massage'),R('4:30pm','Yoga class'),R('6:00pm','Dinner')];
+const DAY3=[R('8:30am','Breakfast'),R('10:30am','Yoga class'),R('12:00pm','Yoga class or Sound Healing'),R('1:00pm','Lunch'),R('2:30pm','90-min body massage'),R('4:30pm','Yoga class'),R('6:00pm','Dinner')];
+const DAY4=[R('8:30am','Yoga class'),R('9:30am','Breakfast'),R('10:30am','Yoga class'),R('11:30am','Lunch')];
 const cp=a=>a.map(r=>({...r}));
 function retreatTemplate(){return {
   eyebrow:'Naia Spa House · Hoi An', title:'4-Day Wellness Retreat', subtitle:'Your suggested itinerary', date:'', address:ADDRESS,
   days:[
-    {label:'Day 1',title:'Arrival & Grounding',badge:'',rows:[R('1:00 PM','Arrival at Naia Spa House'),R('1:30 PM','Lunch'),R('2:00 PM','Check-in'),R('2:30 PM','90-min body massage'),R('4:30 PM','Yoga class'),R('6:00 PM','Dinner')]},
+    {label:'Day 1',title:'Arrival & Grounding',badge:'',rows:[R('1:00pm','Arrival at Naia Spa House'),R('1:30pm','Lunch'),R('2:00pm','Check-in'),R('2:30pm','90-min body massage'),R('4:30pm','Yoga class'),R('6:00pm','Dinner')]},
     {label:'Day 2',title:'Balancing Body & Mind',badge:'',rows:cp(DAY2)},
     {label:'Day 3',title:'Balancing Body & Mind',badge:'',rows:cp(DAY3)},
     {label:'Day 4',title:'Integration',badge:'',rows:cp(DAY4)},
-    {label:'Day 5',title:'Extra Day & Departure',badge:'Extra day',rows:[R('8:30 AM','Yoga class'),R('9:30 AM','Breakfast'),R('10:30 AM','Yoga class'),R('12:00 PM','Check-out')]}
+    {label:'Day 5',title:'Extra Day & Departure',badge:'Extra day',rows:[R('8:30am','Yoga class'),R('9:30am','Breakfast'),R('10:30am','Yoga class'),R('12:00pm','Check-out')]}
   ],
-  pkg:{label:'Your retreat',tiles:[T('4 days','Yoga, spa & healthy meals'),T('8:30 · 10:30','Morning yoga'),T('12:00 · 4:30','Midday & afternoon yoga'),T('All meals','Included every day')],foot:'Check-in 2:00 PM · Check-out 12:00 PM'},
+  pkg:{label:'Your retreat',tiles:[T('4 days','Yoga, spa & healthy meals'),T('8:30 · 10:30','Morning yoga'),T('12:00 · 4:30','Midday & afternoon yoga'),T('All meals','Included every day')],foot:'Check-in 2:00pm · Check-out 12:00pm'},
   notesTitle:'Good to know', notes:cp(NOTES_RETREAT), footer:FOOTER
 };}
 function retreatExample(){const t=retreatTemplate();return {...t,
   title:"Mari's Wellness Retreat", date:'Saturday 24 – Wednesday 28 October 2026',
   days:[
-    {label:'Day 1 · Sat 24 Oct',title:'Arrival',badge:'',rows:[R('11:00 PM','Welcome & check-in. Your programme begins on Sunday morning.')]},
+    {label:'Day 1 · Sat 24 Oct',title:'Arrival',badge:'',rows:[R('11:00pm','Welcome & check-in. Your programme begins on Sunday morning.')]},
     {label:'Day 2 · Sun 25 Oct',title:'Balancing Body & Mind',badge:'',rows:DAY2.map(r=>r.text.startsWith('90')?R(r.time,'90-min massage of your choice'):{...r})},
     {label:'Day 3 · Mon 26 Oct',title:'Balancing Body & Mind',badge:'Spa rest day',rows:DAY3.map(r=>r.text.startsWith('90')?R(r.time,'Free time'):{...r})},
     {label:'Day 4 · Tue 27 Oct',title:'Integration',badge:'',rows:[...cp(DAY4),R('Afternoon','90-min massage of your choice, time arranged with our team')]},
-    {label:'Day 5 · Wed 28 Oct',title:'Closing & Departure',badge:'',rows:[R('8:30 AM','Yoga class'),R('9:30 AM','Breakfast'),R('10:30 AM','Yoga class'),R('12:00 PM','Check-out'),R('12:00 PM','Sound Healing (optional)'),R('Afternoon','90-min massage of your choice, time arranged with our team')]}
+    {label:'Day 5 · Wed 28 Oct',title:'Closing & Departure',badge:'',rows:[R('8:30am','Yoga class'),R('9:30am','Breakfast'),R('10:30am','Yoga class'),R('12:00pm','Check-out'),R('12:00pm','Sound Healing (optional)'),R('Afternoon','90-min massage of your choice, time arranged with our team')]}
   ],
-  pkg:{label:'Your retreat',tiles:[T('Sun · Tue · Wed','Spa days, tailored by our therapist'),T('Vegetarian','No meat, salmon welcome'),T('8:30 · 10:30 · 12:00 · 4:30','Daily yoga, join any class')],foot:'Check-in 2:00 PM · Check-out 12:00 PM'},
+  pkg:{label:'Your retreat',tiles:[T('Sun · Tue · Wed','Spa days, tailored by our therapist'),T('Vegetarian','No meat, salmon welcome'),T('8:30 · 10:30 · 12:00 · 4:30','Daily yoga, join any class')],foot:'Check-in 2:00pm · Check-out 12:00pm'},
   footer:FOOTER
 };}
 
 /* ---------- Package data (from the Sunset Package PDF) ---------- */
 function sunsetTemplate(){return {
   eyebrow:'Naia Spa House · Hoi An', title:'Sunset Package', subtitle:'Your afternoon itinerary', date:'Friday, 23 October 2026', address:ADDRESS,
-  days:[{label:'',title:'',badge:'',rows:[R('2:00 PM','Arrival & foot bath'),R('2:30 PM','90-min body massage'),R('4:30 PM','Yin yoga class (60 min)'),R('6:00 PM','Dinner')]}],
-  pkg:{label:'Your package',tiles:[T('90 min','Body massage'),T('60 min','Yin yoga'),T('Dinner','Healthy meal, one drink & tea from our menu',true)],foot:'Starts 2:00 PM · Ends after dinner'},
+  days:[{label:'',title:'',badge:'',rows:[R('2:00pm','Arrival & foot bath'),R('2:30pm','90-min body massage'),R('4:30pm','Yin yoga class (60 min)'),R('6:00pm','Dinner')]}],
+  pkg:{label:'Your package',tiles:[T('90 min','Body massage'),T('60 min','Yin yoga'),T('Dinner','Healthy meal, one drink & tea from our menu',true)],foot:'Starts 2:00pm · Ends after dinner'},
   notesTitle:'Good to know',
   notes:[
     {head:'Your experience',text:'Regulate your nervous system and come back to inner balance with this half-day experience of spa, sunset yoga and a nourishing meal.'},
@@ -342,7 +343,7 @@ function renderForm(){
   p.tiles.forEach((t,i)=>{pb.push(h('div',{class:'item'},h('div',{class:'two'},field('Big text',t,'big',{ph:'e.g. 90 min'}),field('Small text',t,'small',{ph:'e.g. Body massage'})),
     h('div',{class:'item-actions'},check('Full width',t,'wide'),h('span',{style:'display:flex;gap:6px'},iconBtn('up','Move box up',()=>{move(p.tiles,i,-1);changed(true)}),iconBtn('down','Move box down',()=>{move(p.tiles,i,1);changed(true)}),iconBtn('x','Remove box',()=>{p.tiles.splice(i,1);changed(true)})))))});
   if(p.tiles.length<6)pb.push(h('div',null,h('button',{type:'button',onclick:()=>{p.tiles.push(T('',''));changed(true)}},'+ Add box')));
-  pb.push(field('Line under the boxes',p,'foot',{ph:'e.g. Starts 2:00 PM · Ends after dinner'}));
+  pb.push(field('Line under the boxes',p,'foot',{ph:'e.g. Starts 2:00pm · Ends after dinner'}));
   f.append(track(panel(MODE==='package'?'Your package box':'Highlight box',`${p.tiles.length} boxes`,pb),'pkg'));
 
   const nb=[field('Section heading',state,'notesTitle')];
@@ -395,6 +396,7 @@ function renderPoster(){
   if(notes.length)P.append(h('section',{class:'p-notes'},h('div',{class:'p-notes-head'},h('h2',null,state.notesTitle),h('span')),
     h('div',{class:'p-notes-grid'},notes.map(n=>h('div',{class:'p-note'},n.head&&h('div',{class:'p-note-h'},n.head),n.text&&h('div',{class:'p-note-b'},n.text))))));
   if(state.footer)P.append(h('footer',{class:'p-foot'},h('span',{class:'line'}),h('span',null,state.footer),h('span',{class:'line'})));
+  ampmPoster(P);
   fit();
 }
 function fit(){const stage=document.getElementById('stage'),sc=document.getElementById('scaler'),p=document.getElementById('poster');
@@ -459,7 +461,7 @@ document.getElementById('btn-pdf').addEventListener('click',async()=>{
     const ml=document.getElementById('p-maplink'),pe=document.getElementById('poster');
     if(ml&&/^https?:/i.test(ml.href)){const pr=pe.getBoundingClientRect(),lr=ml.getBoundingClientRect(),k=w/pr.width;
       pdf.link((lr.left-pr.left)*k,(lr.top-pr.top)*k,lr.width*k,lr.height*k,{url:ml.href});}
-    pdf.setProperties({title:state.title||'Itinerary',author:'Naia Spa House'});
+    pdf.setProperties({title:state.title||'Itinerary',author:'Naia Hoi An'});
     try{await saveFile(pdf.output('blob'),fileName('pdf'));st.textContent='PDF saved.'}
     catch(e){st.textContent=(e&&e.code==='declined')?'Download cancelled.':'PDF download is not available here. Use Download PNG instead.'}
   }catch(e){st.textContent='Could not create the PDF. Please try again.'}
@@ -617,7 +619,7 @@ function initOps(cfg){ // cfg: {mount, getState(), save(), header(), items() -> 
   const FIELDS = [
     ['name','Guest name','e.g. Mari'], ['pax','Number of guests','e.g. 1'],
     ['room','Room','e.g. Room 3'], ['phone','Phone / WhatsApp','e.g. +81 90 1234 5678'],
-    ['arrival','Arrival / transfer','e.g. Arrives 11 PM Sat, no airport pick-up'],
+    ['arrival','Arrival / transfer','e.g. Arrives 11pm Sat, no airport pick-up'],
     ['diet','Diet & allergies','e.g. Vegetarian, no meat, salmon OK'],
     ['health','Health notes (spa & yoga)','e.g. Lower back pain, prefers light pressure'],
     ['requests','Special requests','e.g. Quiet room, late check-out if possible'],
@@ -679,7 +681,7 @@ function initOps(cfg){ // cfg: {mount, getState(), save(), header(), items() -> 
     add(true, '📝', 'Yêu cầu', g.requests);
     if (extra.length) out.push('', ...extra);
     out.push('', [g.sales ? `Liên hệ: ${g.sales}` : '', `Cập nhật: ${stamp()}`].filter(Boolean).join(' · '));
-    return { text: out.join('\n'), count: rows.length };
+    return { text: ampm(out.join('\n')), count: rows.length };
   }
   function refresh(){
     const st = cfg.getState();

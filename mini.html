@@ -176,6 +176,7 @@ input:focus,textarea:focus{border-color:var(--focus)}
   </section>
 </div>
 
+<script>window.ampm=s=>String(s==null?"":s).replace(/(\d)\s*([AaPp])\.?\s*[Mm]\.?(?![A-Za-z])/g,(m,d,x)=>d+x.toLowerCase()+"m");window.ampmPoster=el=>{if(!el)return;const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);let n;while((n=w.nextNode())){const v=ampm(n.nodeValue);if(v!==n.nodeValue)n.nodeValue=v}};</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
@@ -190,17 +191,17 @@ const COMMON = {
 const PRESETS = {
   morning:{ name:"Morning", ...COMMON,
     title:"Morning Wellness Mini-Retreat", itLabel:"Your morning itinerary",
-    schedule:[["8:00 am","Welcome drink & check-in"],["8:30 am","Yoga or Breathwork"],["9:30 am","Foot bath & relax"],["10:00 am","Your choice of body scrub or body wrap"],["11:00 am","Your choice of full body massage"],["12:00 pm","Lunch"]],
+    schedule:[["8:00am","Welcome drink & check-in"],["8:30am","Yoga or Breathwork"],["9:30am","Foot bath & relax"],["10:00am","Your choice of body scrub or body wrap"],["11:00am","Your choice of full body massage"],["12:00pm","Lunch"]],
     tiles:[["60 min","Yoga or Breathwork"],["30 min","Body scrub or body wrap"],["60 min","Body massage"],["Lunch","Healthy meal, one drink & tea from our menu"]],
-    pkgFoot:"Starts 8:00 AM · Ends after lunch",
+    pkgFoot:"Starts 8:00am · Ends after lunch",
     notes:[["Your experience","Regulate your nervous system and return to inner balance with this half-day experience of spa treatments, morning yoga or breathwork, and a nourishing meal."],
-           ["Yoga or Breathwork","Our 8:30 AM class rotates daily, featuring Hatha, Vinyasa, or Breathwork & Meditation. Please reach out to our team before your visit, and we will happily help you select the practice that best suits you. Comfortable clothing is recommended."],
+           ["Yoga or Breathwork","Our 8:30am class rotates daily, featuring Hatha, Vinyasa, or Breathwork & Meditation. Please reach out to our team before your visit, and we will happily help you select the practice that best suits you. Comfortable clothing is recommended."],
            ["Lunch","Gently complete your Naia experience with a wholesome meal, a refreshing drink, and herbal tea from our kitchen menu."]]},
   sunset:{ name:"Sunset", ...COMMON,
     title:"Sunset Wellness Mini-Retreat", itLabel:"Your sunset itinerary",
-    schedule:[["2:00 pm","Welcome drink & check-in"],["2:30 pm","Foot bath"],["2:30 pm","Your choice of body scrub or body wrap"],["3:00 pm","Your choice of full body massage"],["4:30 pm","Yoga or Sound Healing"],["6:00 pm","Dinner"]],
+    schedule:[["2:00pm","Welcome drink & check-in"],["2:30pm","Foot bath"],["2:30pm","Your choice of body scrub or body wrap"],["3:00pm","Your choice of full body massage"],["4:30pm","Yoga or Sound Healing"],["6:00pm","Dinner"]],
     tiles:[["30 min","Body scrub or body wrap"],["60 min","Body massage"],["60 min","Yoga or Sound Healing"],["Dinner","Healthy meal, one drink & tea from our menu"]],
-    pkgFoot:"Starts 2:00 PM · Ends after dinner",
+    pkgFoot:"Starts 2:00pm · Ends after dinner",
     notes:[["Your experience","Regulate your nervous system and return to inner balance with this half-day experience of spa treatments, sunset yoga or sound healing, and a nourishing meal."],
            ["Yoga or Sound Healing","As the sun goes down, slow down with an evening yoga session or sound healing. Our daily offerings vary, so please reach out to our team before your visit — we would be delighted to help you curate your ideal afternoon. Comfortable clothing is recommended."],
            ["Dinner","Gently complete your Naia experience with a wholesome meal, a refreshing drink, and herbal tea from our kitchen menu."]]}
@@ -242,6 +243,7 @@ function renderPoster(){
     </section>
     <section class="p-notes"><div class="p-notes-head"><h2>${esc(s.notesTitle)}</h2><span></span></div><div class="p-grid">${notes}</div></section>
     ${s.footer ? `<div class="p-foot"><span></span>${esc(s.footer)}<span></span></div>` : ""}`;
+  ampmPoster(document.getElementById("poster"));
   const t = document.querySelector("#poster .p-title"), room = t.parentElement.clientWidth;
   for (let fs = 58; t.scrollWidth > room && fs > 30; fs -= 2) t.style.fontSize = fs - 2 + "px";
   fitPreview();
@@ -484,7 +486,7 @@ function initOps(cfg){ // cfg: {mount, getState(), save(), header(), items() -> 
   const FIELDS = [
     ['name','Guest name','e.g. Mari'], ['pax','Number of guests','e.g. 1'],
     ['room','Room','e.g. Room 3'], ['phone','Phone / WhatsApp','e.g. +81 90 1234 5678'],
-    ['arrival','Arrival / transfer','e.g. Arrives 11 PM Sat, no airport pick-up'],
+    ['arrival','Arrival / transfer','e.g. Arrives 11pm Sat, no airport pick-up'],
     ['diet','Diet & allergies','e.g. Vegetarian, no meat, salmon OK'],
     ['health','Health notes (spa & yoga)','e.g. Lower back pain, prefers light pressure'],
     ['requests','Special requests','e.g. Quiet room, late check-out if possible'],
@@ -546,7 +548,7 @@ function initOps(cfg){ // cfg: {mount, getState(), save(), header(), items() -> 
     add(true, '📝', 'Yêu cầu', g.requests);
     if (extra.length) out.push('', ...extra);
     out.push('', [g.sales ? `Liên hệ: ${g.sales}` : '', `Cập nhật: ${stamp()}`].filter(Boolean).join(' · '));
-    return { text: out.join('\n'), count: rows.length };
+    return { text: ampm(out.join('\n')), count: rows.length };
   }
   function refresh(){
     const st = cfg.getState();

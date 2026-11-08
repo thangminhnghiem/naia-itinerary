@@ -1,5 +1,5 @@
 // Naia Itinerary – offline shell. Bump VERSION when files change.
-const VERSION = "naia-itinerary-v2";
+const VERSION = "naia-itinerary-v3";
 const SHELL = ["./", "index.html", "retreat.html", "mini.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "apple-touch-icon.png"];
 const CDN = "https://cdnjs.cloudflare.com/";
 
