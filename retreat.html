@@ -209,7 +209,7 @@ const MAP_URL='https://maps.app.goo.gl/rP5uNsQyc4VA1Ai36';
 const MAP_LABEL='Open in Google Maps';
 const R=(t,x)=>({time:t,text:x});
 const T=(big,small,wide)=>({big,small,wide:!!wide});
-const ADDRESS='Your experience takes place at: Naia Spa + Retreat House, 18/2 Le Thanh Tong Street, Cam Chau, Hoi An.';
+const ADDRESS='Your experience takes place at: Naia Hoi An, 18/2 Le Thanh Tong Street, Cam Chau, Hoi An.';
 const FOOTER='Refresh . Recovery . Rebalance';
 
 /* ---------- Retreat data ---------- */
@@ -224,9 +224,9 @@ const DAY3=[R('8:30am','Breakfast'),R('10:30am','Yoga class'),R('12:00pm','Yoga 
 const DAY4=[R('8:30am','Yoga class'),R('9:30am','Breakfast'),R('10:30am','Yoga class'),R('11:30am','Lunch')];
 const cp=a=>a.map(r=>({...r}));
 function retreatTemplate(){return {
-  eyebrow:'Naia Spa House · Hoi An', title:'4-Day Wellness Retreat', subtitle:'Your suggested itinerary', date:'', address:ADDRESS,
+  eyebrow:'Naia Hoi An', title:'4-Day Wellness Retreat', subtitle:'Your suggested itinerary', date:'', address:ADDRESS,
   days:[
-    {label:'Day 1',title:'Arrival & Grounding',badge:'',rows:[R('1:00pm','Arrival at Naia Spa House'),R('1:30pm','Lunch'),R('2:00pm','Check-in'),R('2:30pm','90-min body massage'),R('4:30pm','Yoga class'),R('6:00pm','Dinner')]},
+    {label:'Day 1',title:'Arrival & Grounding',badge:'',rows:[R('1:00pm','Arrival at Naia Hoi An'),R('1:30pm','Lunch'),R('2:00pm','Check-in'),R('2:30pm','90-min body massage'),R('4:30pm','Yoga class'),R('6:00pm','Dinner')]},
     {label:'Day 2',title:'Balancing Body & Mind',badge:'',rows:cp(DAY2)},
     {label:'Day 3',title:'Balancing Body & Mind',badge:'',rows:cp(DAY3)},
     {label:'Day 4',title:'Integration',badge:'',rows:cp(DAY4)},
@@ -250,7 +250,7 @@ function retreatExample(){const t=retreatTemplate();return {...t,
 
 /* ---------- Package data (from the Sunset Package PDF) ---------- */
 function sunsetTemplate(){return {
-  eyebrow:'Naia Spa House · Hoi An', title:'Sunset Package', subtitle:'Your afternoon itinerary', date:'Friday, 23 October 2026', address:ADDRESS,
+  eyebrow:'Naia Hoi An', title:'Sunset Package', subtitle:'Your afternoon itinerary', date:'Friday, 23 October 2026', address:ADDRESS,
   days:[{label:'',title:'',badge:'',rows:[R('2:00pm','Arrival & foot bath'),R('2:30pm','90-min body massage'),R('4:30pm','Yin yoga class (60 min)'),R('6:00pm','Dinner')]}],
   pkg:{label:'Your package',tiles:[T('90 min','Body massage'),T('60 min','Yin yoga'),T('Dinner','Healthy meal, one drink & tea from our menu',true)],foot:'Starts 2:00pm · Ends after dinner'},
   notesTitle:'Good to know',
@@ -263,7 +263,7 @@ function sunsetTemplate(){return {
   footer:FOOTER
 };}
 function blankPackage(){return {
-  eyebrow:'Naia Spa House · Hoi An', title:'[Package name]', subtitle:'Your itinerary', date:'[Day, date]', address:ADDRESS,
+  eyebrow:'Naia Hoi An', title:'[Package name]', subtitle:'Your itinerary', date:'[Day, date]', address:ADDRESS,
   days:[{label:'',title:'',badge:'',rows:[R('',''),R('','')]}],
   pkg:{label:'Your package',tiles:[T('',''),T('','')],foot:''},
   notesTitle:'Good to know', notes:[{head:'Your itinerary',text:'This is the suggested itinerary for your visit. Please let us know if any adjustments are needed to suit your preferences.'}], footer:FOOTER
